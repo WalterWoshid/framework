@@ -11,24 +11,14 @@ namespace Go\Core;
 
 use Go\Aop\Feature;
 use Go\Core\Exception\AbstractAdapterNotImplementedException;
-use Go\Core\Instrument\ClassLoading\AopComposerLoader;
-use Go\Core\Instrument\ClassLoading\SourceTransformingLoader;
+use Go\Core\Instrument\ClassLoading\{AopComposerLoader, SourceTransformingLoader};
 use Go\Core\Instrument\PathResolver;
 use Go\Core\Instrument\Singleton;
-use Go\Core\Service\AdviceMatcher;
-use Go\Core\Service\AspectLoader;
-use Go\Core\Service\CachePathManager;
-use Go\Core\Service\GoAspectContainer;
-use Go\Core\Service\LazyAdvisorAccessor;
+use Go\Core\Service\{AdviceMatcher, AspectLoader, CachePathManager, GoAspectContainer, LazyAdvisorAccessor};
 use InvalidArgumentException;
+use JetBrains\PhpStorm\ExpectedValues;
 use RuntimeException;
-use Symfony\Component\Cache\Adapter\AbstractAdapter;
-use Symfony\Component\Cache\Adapter\FilesystemAdapter;
-use Symfony\Component\Cache\Adapter\TagAwareAdapter;
-
-use function define;
-use function is_a;
-use function is_array;
+use Symfony\Component\Cache\Adapter\{AbstractAdapter, FilesystemAdapter, TagAwareAdapter};
 
 /**
  * Abstract aspect kernel is used to prepare an application to work with aspects
@@ -51,27 +41,26 @@ abstract class AspectKernel
     /**
      * # Init the kernel and make adjustments
      *
-     * @param bool              $debug        Whether kernel is in debug mode
-     * @param string            $appDir       Path to the application directory
-     * @param class-string|TagAwareAdapter $cacheAdapter Symfony cache contract adapter.<br>
-     *        {@link https://symfony.com/doc/current/components/cache.html#cache-contracts}
-     * @param ?string           $cacheDir     Path to the cache directory where all compiled
-     *                                        classes will be stored
-     * @param Feature|Feature[] $features     List of features to enable
-     * @param string[]          $includePaths Whitelist of directories where aspects should be
-     *                                        applied.<br>
-     *                                        If empty, then all directories will be scanned
-     * @param string[]          $excludePaths Blacklist of directories where aspects should not be
-     *                                        applied
+     * @param bool                   $debug        Whether kernel is in debug mode
+     * @param string                 $appDir       Path to the application directory
+     * @param string|TagAwareAdapter $cacheAdapter Symfony cache contract adapter.<br>
+     *                               {@link https://symfony.com/doc/current/components/cache.html#cache-contracts}
+     * @param ?string                $cacheDir     Path to the cache directory where all compiled classes will be stored
+     * @param int-mask-of<Feature>   $features     List of features to enable as a bitmask
+     *                                             Example: Feature::INTERCEPT_FUNCTIONS | Feature::INTERCEPT_METHODS
+     * @param string[]               $includePaths Whitelist of directories where aspects should be applied.<br>
+     *                                             If empty, then all directories will be scanned
+     * @param string[]               $excludePaths Blacklist of directories where aspects should not be applied
      */
     public static function init(
-        bool                   $debug        = false,
-        string                 $appDir       = __DIR__ . '/../../../../../',
+        bool   $debug       = false,
+        string $appDir      = __DIR__ . '/../../../../../',
         string|TagAwareAdapter $cacheAdapter = FilesystemAdapter::class,
-        string                 $cacheDir     = null,
-        Feature|array          $features     = Feature::NONE,
-        array                  $includePaths = [],
-        array                  $excludePaths = [],
+        string $cacheDir    = null,
+        #[ExpectedValues(flagsFromClass: Feature::class)]
+        int   $features     = Feature::NONE,
+        array $includePaths = [],
+        array $excludePaths = [],
     ): void {
         // Check if kernel was already initialized
         if (KernelOptions::isInitialized()) {
