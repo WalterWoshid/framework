@@ -93,7 +93,7 @@ class GeneralAspectLoaderExtension extends AbstractAspectLoaderExtension
 
             // Parse attribute
             if ($instance instanceof After) {
-                $parsedAttributes[] = new AfterInterceptor()
+                $parsedAttributes[] = new AfterInterceptor();
             }
 
             elseif ($instance instanceof Around) {
