@@ -1,21 +1,18 @@
 <?php
-
-declare(strict_types=1);
-/*
+/**
  * Go! AOP framework
  *
- * @copyright Copyright 2013, Lisachenko Alexander <lisachenko.it@gmail.com>
+ * @copyright Copyright 2013-2022, Lisachenko Alexander <lisachenko.it@gmail.com>
  *
  * This source file is subject to the license that is bundled
  * with this source code in the file LICENSE.
  */
-
 namespace Go\Aop\Pointcut;
 
 use Dissect\Lexer\Lexer;
-use Doctrine\Common\Annotations\Reader;
 use Go\Core\AspectContainer;
 use PHPUnit\Framework\TestCase;
+use Symfony\Component\Cache\Adapter\ArrayAdapter;
 
 /**
  * Class PointcutParserTest defines common check for valid grammar parsing
@@ -33,7 +30,7 @@ class PointcutParserTest extends TestCase
         parent::setUp();
         $this->lexer  = new PointcutLexer();
         $container    = $this->createMock(AspectContainer::class);
-        $annotReader  = $this->createMock(Reader::class);
+        $annotReader  = $this->createMock(ArrayAdapter::class);
         $this->parser = new PointcutParser(new PointcutGrammar($container, $annotReader));
     }
 

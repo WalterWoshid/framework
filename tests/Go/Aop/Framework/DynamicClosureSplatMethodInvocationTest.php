@@ -1,7 +1,12 @@
 <?php
-
-declare(strict_types = 1);
-
+/**
+ * Go! AOP framework
+ *
+ * @copyright Copyright 2014-2022, Lisachenko Alexander <lisachenko.it@gmail.com>
+ *
+ * This source file is subject to the license that is bundled
+ * with this source code in the file LICENSE.
+ */
 namespace Go\Aop\Framework;
 
 use Go\Aop\Intercept\Interceptor;
@@ -80,7 +85,7 @@ class DynamicClosureSplatMethodInvocationTest extends TestCase
             }
         ));
 
-        $this->assertEquals(5, $child->recursion(5,0));
+        $this->assertEquals(5, $child->recursion(5));
         $this->assertEquals(20, $child->recursion(5,3));
     }
 

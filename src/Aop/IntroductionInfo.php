@@ -1,15 +1,12 @@
 <?php
-
-declare(strict_types=1);
-/*
+/**
  * Go! AOP framework
  *
- * @copyright Copyright 2012, Lisachenko Alexander <lisachenko.it@gmail.com>
+ * @copyright Copyright 2012-2022, Lisachenko Alexander <lisachenko.it@gmail.com>
  *
  * This source file is subject to the license that is bundled
  * with this source code in the file LICENSE.
  */
-
 namespace Go\Aop;
 
 /**
@@ -23,11 +20,15 @@ interface IntroductionInfo extends Advice
 {
     /**
      * Returns the additional interface introduced by this Advisor or Advice.
+     *
+     * @return string[]
      */
-    public function getInterface(): string;
+    public function getInterfaces(): array;
 
     /**
      * Return the additional trait with realization of introduced interface
+     *
+     * @return string[]
      */
-    public function getTrait(): string;
+    public function getTraits(): array;
 }

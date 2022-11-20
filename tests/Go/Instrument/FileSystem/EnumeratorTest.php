@@ -1,15 +1,12 @@
 <?php
-
-declare(strict_types = 1);
-/*
+/**
  * Go! AOP framework
  *
- * @copyright Copyright 2016, Lisachenko Alexander <lisachenko.it@gmail.com>
+ * @copyright Copyright 2016-2022, Lisachenko Alexander <lisachenko.it@gmail.com>
  *
  * This source file is subject to the license that is bundled
  * with this source code in the file LICENSE.
  */
-
 namespace Go\Instrument\FileSystem;
 
 use PHPUnit\Framework\TestCase;

@@ -1,15 +1,12 @@
 <?php
-
-declare(strict_types = 1);
-/*
+/**
  * Go! AOP framework
  *
- * @copyright Copyright 2012, Lisachenko Alexander <lisachenko.it@gmail.com>
+ * @copyright Copyright 2012-2022, Lisachenko Alexander <lisachenko.it@gmail.com>
  *
  * This source file is subject to the license that is bundled
  * with this source code in the file LICENSE.
  */
-
 namespace Go\Aop\Support;
 
 use Go\Aop\PointFilter;
@@ -50,15 +47,15 @@ class SimpleNamespaceFilter implements PointFilter
     /**
      * {@inheritdoc}
      */
-    public function matches($ns, $context = null, $instance = null, array $arguments = null): bool
+    public function matches(mixed $point, $context = null, $instance = null, array $arguments = null): bool
     {
-        $isNamespaceIsObject = ($ns === (object) $ns);
+        $isNamespaceIsObject = ($point === (object) $point);
 
-        if ($isNamespaceIsObject && !$ns instanceof ReflectionFileNamespace) {
+        if ($isNamespaceIsObject && !$point instanceof ReflectionFileNamespace) {
             return false;
         }
 
-        $nsName = ($ns instanceof ReflectionFileNamespace) ? $ns->getName() : $ns;
+        $nsName = ($point instanceof ReflectionFileNamespace) ? $point->getName() : $point;
 
         return ($nsName === $this->nsName) || (bool) preg_match("/^(?:{$this->regexp})$/", $nsName);
     }

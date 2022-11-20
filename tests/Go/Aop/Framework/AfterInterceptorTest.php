@@ -1,17 +1,15 @@
 <?php
-
-declare(strict_types = 1);
-/*
+/**
  * Go! AOP framework
  *
- * @copyright Copyright 2011, Lisachenko Alexander <lisachenko.it@gmail.com>
+ * @copyright Copyright 2011-2022, Lisachenko Alexander <lisachenko.it@gmail.com>
  *
  * This source file is subject to the license that is bundled
  * with this source code in the file LICENSE.
  */
-
 namespace Go\Aop\Framework;
 
+use Exception;
 use RuntimeException;
 
 class AfterInterceptorTest extends AbstractInterceptorTest
@@ -29,6 +27,9 @@ class AfterInterceptorTest extends AbstractInterceptorTest
         $this->assertEquals(['invocation', 'advice'], $sequence, "After advice should be invoked after invocation");
     }
 
+    /**
+     * @throws Exception
+     */
     public function testAdviceIsCalledAfterExceptionInInvocation()
     {
         $sequence   = [];
@@ -39,7 +40,7 @@ class AfterInterceptorTest extends AbstractInterceptorTest
         $this->expectException(RuntimeException::class);
         try {
             $interceptor->invoke($invocation);
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             $this->assertEquals(['invocation', 'advice'], $sequence, "After advice should be invoked after invocation");
             throw $e;
         }

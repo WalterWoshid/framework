@@ -1,8 +1,5 @@
 <?php
-declare(strict_types = 1);
-
-use Go\Aop\Proxy;
-/*
+/**
  * Go! AOP framework
  *
  * @copyright Copyright 2014, Lisachenko Alexander <lisachenko.it@gmail.com>
@@ -10,8 +7,10 @@ use Go\Aop\Proxy;
  * This source file is subject to the license that is bundled
  * with this source code in the file LICENSE.
  */
-?><!DOCTYPE html>
-<html>
+use Go\Aop\Proxy;
+?>
+<!DOCTYPE html>
+<html lang="en">
 <head>
     <title>Go! AOP Demo</title>
     <link href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet">
@@ -30,7 +29,7 @@ use Go\Aop\Proxy;
               <span class="icon-bar"></span>
               <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="http://go.aopphp.com/">Go! AOP</a>
+            <a class="navbar-brand" href="https://go.aopphp.com/">Go! AOP</a>
           </div>
 
           <!-- Collect the nav links, forms, and other content for toggling -->
@@ -55,7 +54,7 @@ use Go\Aop\Proxy;
                   <li><a href="?showcase=declare-errors">Declare runtime errors</a></li>
                 </ul>
               </li>
-              <li><a href="http://go.aopphp.com/docs/" target="_blank">Documentation</a></li>
+              <li><a href="https://go.aopphp.com/docs/" target="_blank">Documentation</a></li>
               <li class="dropdown">
                   <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                       AOP Solutions <b class="caret"></b>
@@ -73,11 +72,11 @@ use Go\Aop\Proxy;
                   <ul class="dropdown-menu">
                     <li><a href="https://www.youtube.com/watch?feature=player_detailpage&v=aZ_9PuHemBk#t=1283" target="_blank">Advanced logging in PHP</a></li>
                     <li><a href="https://www.youtube.com/watch?v=BXKQ99-78bI" target="_blank">Aspect Oriented Programming in PHP</a></li>
-                    <li><a href="http://tutsplus.s3.amazonaws.com/tutspremium/Quick-Tips/AspectMock-Is-Pretty-Neat.mp4" target="_blank">AspectMock Is Pretty Neat</a></li>
+                    <li><a href="https://tutsplus.s3.amazonaws.com/tutspremium/Quick-Tips/AspectMock-Is-Pretty-Neat.mp4" target="_blank">AspectMock Is Pretty Neat</a></li>
                     <li class="divider">Slides</li>
-                    <li><a href="http://www.slideshare.net/lisachenko/solving-crosscutting-concerns-in-php" target="_blank">Solving Cross-Cutting Concerns in PHP (at DPC16)</a></li>
-                    <li><a href="http://www.slideshare.net/lisachenko/weaving-aspects-in-php-with-the-help-of-go-aop-library" target="_blank">Weaving aspects in PHP with the help of Go! AOP library</a></li>
-                    <li><a href="http://www.slideshare.net/lisachenko/aspect-oriented-programming-in-php" target="_blank">Aspect-Oriented Programming in PHP (Russian)</a></li>
+                    <li><a href="https://www.slideshare.net/lisachenko/solving-crosscutting-concerns-in-php" target="_blank">Solving Cross-Cutting Concerns in PHP (at DPC16)</a></li>
+                    <li><a href="https://www.slideshare.net/lisachenko/weaving-aspects-in-php-with-the-help-of-go-aop-library" target="_blank">Weaving aspects in PHP with the help of Go! AOP library</a></li>
+                    <li><a href="https://www.slideshare.net/lisachenko/aspect-oriented-programming-in-php" target="_blank">Aspect-Oriented Programming in PHP (Russian)</a></li>
                   </ul>
               </li>
             </ul>
@@ -103,16 +102,16 @@ use Go\Aop\Proxy;
   <div>
     <h1>Welcome</h1>
     <p class="lead">
-        This demo shows your an examples of AOP usage. <br>
+      This demo shows you an examples of AOP usage. <br>
     </p>
   </div>
 
   <div class="well"><!--Here will be an output of code execution-->
-      <p>
-          Please, choose one of available examples from navigation menu. <br>
-          You can also try to run this code with XDebug.
-      </p>
-      <pre>
+    <p>
+      Please, choose one of available examples from navigation menu. <br>
+      You can also try to run this code with XDebug.
+    </p>
+    <pre>
 <?php
 /*
  * Start of demo source code here
@@ -128,7 +127,7 @@ use Demo\Example\LoggingDemo;
 use Demo\Example\PropertyDemo;
 use Demo\Example\UserFluentDemo;
 use Demo\Highlighter;
-use Go\Instrument\Transformer\MagicConstantTransformer;
+use Go\Core\Instrument\Transformer\MagicConstantTransformer;
 
 $isAOPDisabled = isset($_COOKIE['aop_on']) && $_COOKIE['aop_on'] == 'false';
 include __DIR__ . ($isAOPDisabled ? '/../vendor/autoload.php' : '/autoload_aspect.php');
@@ -180,6 +179,7 @@ switch ($showCase) {
         $aspectName = 'Demo\Aspect\FunctionInterceptorAspect';
 
         $example = new FunctionDemo();
+        /** @noinspection PhpExpressionResultUnusedInspection */
         $example->testArrayFunctions(['test' => 1, 'code' => 2, 'more' => 1]);
         $example->testFileContent();
         break;
@@ -189,6 +189,7 @@ switch ($showCase) {
 
         $example = new UserFluentDemo(); // Original class doesn't provide fluent interface for us
         if ($example instanceof Proxy) { // This check is to prevent fatal errors when AOP is disabled
+            /** @noinspection PhpUndefinedMethodInspection */
             $example
                 ->setName('John')
                 ->setSurname('Doe')
@@ -221,6 +222,7 @@ switch ($showCase) {
         $aspectName = 'Demo\Aspect\DeclareErrorAspect';
 
         $example = new ErrorDemo();
+        /** @noinspection PhpDeprecationInspection */
         $example->oldMethod();
         $example->notSoGoodMethod();
         break;
@@ -242,6 +244,7 @@ if ($aspectName !== ''):
           </div>
       <div class="panel-body well panel-collapse collapse out" id="collapseOne">
 <?php
+/** @noinspection PhpUnhandledExceptionInspection */
 $refAspect = new ReflectionClass($aspectName);
 Highlighter::highlight(MagicConstantTransformer::resolveFileName($refAspect->getFileName()));
 ?>
@@ -290,9 +293,11 @@ endif;
     <script>
         $(function() {
             $("#aop_on").click(function() {
-                var active=$(this).hasClass('active');
-                document.cookie = "aop_on=" + active + "; path=/";
-                $(this).toggleClass('btn-info').toggleClass('btn-danger').text(active ? "On" : "Off");
+                let active = $(this).hasClass('active');
+                document.cookie = `aop_on=${active}; path=/`;
+                $(this).toggleClass('btn-info')
+                    .toggleClass('btn-danger')
+                    .text(active ? "On" : "Off");
                 window.location.reload();
             });
         });

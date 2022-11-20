@@ -1,5 +1,4 @@
 <?php
-declare(strict_types = 1);
 
 include \Go\Instrument\Transformer\FilterInjectorTransformer::rewrite(($class->method('filename')), __DIR__);
 include_once \Go\Instrument\Transformer\FilterInjectorTransformer::rewrite(($class->method('filename')), __DIR__);

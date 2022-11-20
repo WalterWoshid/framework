@@ -1,5 +1,4 @@
 <?php
-declare(strict_types = 1);
 
 include($class->method('filename'));
 include_once($class->method('filename'));

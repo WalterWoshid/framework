@@ -1,23 +1,20 @@
 <?php
-
-declare(strict_types=1);
-/*
+/**
  * Go! AOP framework
  *
- * @copyright Copyright 2015, Lisachenko Alexander <lisachenko.it@gmail.com>
+ * @copyright Copyright 2015-2022, Lisachenko Alexander <lisachenko.it@gmail.com>
  *
  * This source file is subject to the license that is bundled
  * with this source code in the file LICENSE.
  */
-
 namespace Go\Console\Command;
 
 use Go\Aop\Advisor;
 use Go\Core\AdviceMatcher;
-use Go\Core\AdviceMatcherInterface;
+use Go\Core\Service\AdviceMatcherInterface;
 use Go\Core\AspectContainer;
 use Go\Core\AspectLoader;
-use Go\Instrument\FileSystem\Enumerator;
+use Go\Core\Instrument\FileSystem\Enumerator;
 use Go\ParserReflection\ReflectionFile;
 use ReflectionClass;
 use ReflectionException;

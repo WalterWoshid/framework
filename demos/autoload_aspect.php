@@ -1,7 +1,5 @@
 <?php
-
-declare(strict_types = 1);
-/*
+/**
  * Go! AOP framework
  *
  * @copyright Copyright 2012, Lisachenko Alexander <lisachenko.it@gmail.com>
@@ -11,15 +9,15 @@ declare(strict_types = 1);
  */
 
 use Demo\Aspect\AwesomeAspectKernel;
-use Go\Aop\Features;
+use Go\Aop\Feature;
 
 include __DIR__ . '/../vendor/autoload.php';
 
 // Initialize demo aspect container
-AwesomeAspectKernel::getInstance()->init([
-    'debug'    => true,
-    'appDir'   => __DIR__ . '/../demos',
-    'cacheDir' => __DIR__ . '/cache',
+AwesomeAspectKernel::init(
+    debug: true,
+    appDir: __DIR__ . '/../demos',
+    cacheDir: __DIR__ . '/cache',
 
-    'features' => Features::INTERCEPT_FUNCTIONS,
-]);
+    features: Feature::INTERCEPT_FUNCTIONS,
+);

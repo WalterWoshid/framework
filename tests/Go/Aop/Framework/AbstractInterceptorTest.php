@@ -1,15 +1,12 @@
 <?php
-
-declare(strict_types = 1);
-/*
+/**
  * Go! AOP framework
  *
- * @copyright Copyright 2013, Lisachenko Alexander <lisachenko.it@gmail.com>
+ * @copyright Copyright 2011-2022, Lisachenko Alexander <lisachenko.it@gmail.com>
  *
  * This source file is subject to the license that is bundled
  * with this source code in the file LICENSE.
  */
-
 namespace Go\Aop\Framework;
 
 use Closure;
@@ -29,6 +26,8 @@ abstract class AbstractInterceptorTest extends TestCase
      * Returns a test advice that writes itself to the sequence
      *
      * @param array $sequenceRecorder
+     *
+     * @return Closure
      */
     protected function getAdvice(array &$sequenceRecorder): Closure
     {
@@ -43,10 +42,13 @@ abstract class AbstractInterceptorTest extends TestCase
      * Returns an empty invocation that can update the sequence on invocation
      *
      * @param array $sequenceRecorder
-     * @return MockObject|Invocation
+     * @param bool $throwException
+     *
+     * @return Invocation
      */
     protected function getInvocation(array &$sequenceRecorder, bool $throwException = false): Invocation
     {
+        /** @var $invocation Invocation|MockObject */
         $invocation = $this->getMockBuilder(static::INVOCATION_CLASS)->getMock();
         $invocation
             ->expects($this->any())

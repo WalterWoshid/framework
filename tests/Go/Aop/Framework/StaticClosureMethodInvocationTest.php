@@ -1,7 +1,12 @@
 <?php
-
-declare(strict_types = 1);
-
+/**
+ * Go! AOP framework
+ *
+ * @copyright Copyright 2011-2022, Lisachenko Alexander <lisachenko.it@gmail.com>
+ *
+ * This source file is subject to the license that is bundled
+ * with this source code in the file LICENSE.
+ */
 namespace Go\Aop\Framework;
 
 use Go\Stubs\First;
@@ -33,7 +38,7 @@ class StaticClosureMethodInvocationTest extends TestCase
      * @dataProvider staticLsbMethodsBatch
      * @param string $methodName Method to invoke
      */
-    public function testStaticLsbIsWorking($methodName): void
+    public function testStaticLsbIsWorking(string $methodName): void
     {
         $invocation = new StaticClosureMethodInvocation([], First::class, $methodName);
         $result     = $invocation(First::class);
@@ -55,7 +60,7 @@ class StaticClosureMethodInvocationTest extends TestCase
         $invocation = new StaticClosureMethodInvocation([],First::class, 'staticLsbRecursion');
         FirstStatic::init($invocation);
 
-        $this->assertEquals(5, FirstStatic::staticLsbRecursion(5,0));
+        $this->assertEquals(5, FirstStatic::staticLsbRecursion(5));
         $this->assertEquals(20, FirstStatic::staticLsbRecursion(5,3));
     }
 

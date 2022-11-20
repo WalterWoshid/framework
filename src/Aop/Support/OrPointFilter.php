@@ -1,15 +1,12 @@
 <?php
-
-declare(strict_types = 1);
-/*
+/**
  * Go! AOP framework
  *
- * @copyright Copyright 2013, Lisachenko Alexander <lisachenko.it@gmail.com>
+ * @copyright Copyright 2013-2022, Lisachenko Alexander <lisachenko.it@gmail.com>
  *
  * This source file is subject to the license that is bundled
  * with this source code in the file LICENSE.
  */
-
 namespace Go\Aop\Support;
 
 use Go\Aop\PointFilter;
@@ -50,7 +47,7 @@ class OrPointFilter implements PointFilter
      * @param null|string|object $instance Invocation instance or string for static calls
      * @param null|array $arguments Dynamic arguments for method
      */
-    public function matches($point, $context = null, $instance = null, array $arguments = null): bool
+    public function matches(mixed $point, $context = null, $instance = null, array $arguments = null): bool
     {
         foreach ($this->filters as $filter) {
             if ($filter->matches($point, $context)) {

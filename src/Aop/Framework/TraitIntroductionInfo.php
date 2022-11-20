@@ -1,15 +1,12 @@
 <?php
-
-declare(strict_types=1);
-/*
+/**
  * Go! AOP framework
  *
- * @copyright Copyright 2013, Lisachenko Alexander <lisachenko.it@gmail.com>
+ * @copyright Copyright 2013-2022, Lisachenko Alexander <lisachenko.it@gmail.com>
  *
  * This source file is subject to the license that is bundled
  * with this source code in the file LICENSE.
  */
-
 namespace Go\Aop\Framework;
 
 use Go\Aop\IntroductionInfo;
@@ -21,36 +18,44 @@ class TraitIntroductionInfo implements IntroductionInfo
 {
     /**
      * Introduced interface
+     *
+     * @var string[]
      */
-    private string $introducedInterface;
+    private array $interfaces;
 
     /**
      * Introduced trait
+     *
+     * @var string[]
      */
-    private string $introducedTrait;
+    private array $traits;
 
     /**
      * Creates a TraitIntroductionInfo with given trait name and interface name.
      */
-    public function __construct(string $introducedTrait, string $introducedInterface)
+    public function __construct(array $traits, array $interfaces)
     {
-        $this->introducedTrait     = $introducedTrait;
-        $this->introducedInterface = $introducedInterface;
+        $this->traits      = $traits;
+        $this->interfaces = $interfaces;
     }
 
     /**
      * Returns the additional interface introduced by this Advisor or Advice.
+     *
+     * @return string[]
      */
-    public function getInterface(): string
+    public function getInterfaces(): array
     {
-        return $this->introducedInterface;
+        return $this->interfaces;
     }
 
     /**
      * Returns the additional trait with realization of introduced interface
+     *
+     * @return string[]
      */
-    public function getTrait(): string
+    public function getTraits(): array
     {
-        return $this->introducedTrait;
+        return $this->traits;
     }
 }
