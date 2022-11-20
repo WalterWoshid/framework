@@ -18,6 +18,7 @@
     "require-dev": {
         "adlawson/vfs": "^0.12.1",
         "doctrine/orm": "^2.5",
+        "jetbrains/phpstorm-attributes": "^1.0",
         "phpstan/phpstan": "^0.12.64",
         "phpunit/phpunit": "^9.5",
         "symfony/console": "^4.4|^5.1",
