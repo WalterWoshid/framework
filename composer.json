@@ -21,6 +21,7 @@
         "jetbrains/phpstorm-attributes": "^1.0",
         "phpstan/phpstan": "^0.12.64",
         "phpunit/phpunit": "^9.5",
+        "roave/better-reflection": "^6.4",
         "symfony/console": "^4.4|^5.1",
         "symfony/filesystem": "^4.4|^5.1",
         "symfony/process": "^4.4|^5.1",
