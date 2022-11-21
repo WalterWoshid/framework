@@ -9,7 +9,7 @@
 
     "require": {
         "php": "^8.0",
-        "jakubledl/dissect": "~1.0",
+        "walterwoshid/dissect": "~1.0",
         "laminas/laminas-code": "^4.0",
         "roave/better-reflection": "^6.4",
         "symfony/finder": "^4.4|^5.1|^6.0",
