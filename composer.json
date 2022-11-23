@@ -12,9 +12,9 @@
         "doctrine/annotations": "^1.11.1",
         "doctrine/cache": "^1.10",
         "goaop/parser-reflection": "dev-fork-3",
-        "jakubledl/dissect": "~1.0",
         "laminas/laminas-code": "^4.0",
-        "symfony/finder": "^4.4|^5.1|^6.1"
+        "symfony/finder": "^4.4|^5.1|^6.1",
+        "walterwoshid/dissect": "~1.0"
     },
 
     "require-dev": {
